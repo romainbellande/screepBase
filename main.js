@@ -4,6 +4,7 @@ var roleBuilder = require('role.builder');
 var core = require('core');
 
 module.exports.loop = function () {
+    core.creeps.autoSpawn();
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         if(creep.memory.role == 'harvester') {
@@ -16,4 +17,4 @@ module.exports.loop = function () {
             roleBuilder.run(creep);
         }
     }
-}
+};

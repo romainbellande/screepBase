@@ -4,12 +4,25 @@ var spawns = {
   getAll: function (_filter) {
     return core.structures.getAll([STRUCTURE_SPAWN]);
   },
-  getUnfilled: function () {
+  getEnergyless: function () {
     var spawns = this.getAll();
-    var unfilledSpawns = _.filter(spawns, function(spawn){
+    var filteredSpawns = _.filter(spawns, function(spawn){
       return spawn.energy < spawn.energyCapacity;}
     );
-    return (unfilledSpawns);
+    return (filteredSpawns);
+  },
+  getEnergyAbove: function (val) {
+    var spawns = this.getAll();
+    var filteredSpawns = _.filter(spawns, function(spawn){
+      return spawn.energy > val;}
+    );
+    return filteredSpawns;
+  },
+  getEnergyBelow: function (val) {
+    var spawns = this.getAll();
+    var filteredSpawns = _.filter(spawns, function(spawn){
+      return spawn.energy < val;}
+    );
   }
 };
 module.exports = spawns;

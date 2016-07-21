@@ -2,7 +2,7 @@
 var core = {
   structures: require('structures'),
   spawns: require('spawns'),
-  creepHandler: require('creepHandler'),
+  creeps: require('creeps'),
   helper: require('helper')
 };
 module.exports = core;
