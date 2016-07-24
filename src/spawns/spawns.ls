@@ -3,7 +3,7 @@ core =
 
 spawns =
   getAll: (_filter) ->
-    core.structures.getAll STRUCTURE_SPAWN
+    core.structures.getAll [STRUCTURE_SPAWN]
   getEnergyless: ->
     spawns = this.getAll!
     filteredSpawns = _.filter spawns, (spawn) ->

@@ -1,6 +1,6 @@
 roles =
-  builder: require \./builder/roleBuilder
-  harvester: require \./harvester/roleHarvester
-  upgrader: require \./upgrader/roleUpgrader
+  builder: require \./builder/builder
+  harvester: require \./harvester/harvester
+  upgrader: require \./upgrader/upgrader
 
 module.exports = roles

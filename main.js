@@ -34,7 +34,15 @@
     },
     cost: function(body){
       var bodyCost, _cost;
-      bodyCost = ['move:', 50, 'carry:', 50, 'work:', 20, 'heal:', 200, 'tough:', 20, 'attack:', 80, 'ranged_attack:', 150];
+      bodyCost = {
+        'move': 50,
+        'carry': 50,
+        'work': 20,
+        'heal': 200,
+        'tough': 20,
+        'attack': 80,
+        'ranged_attack': 150
+      };
       _cost = 0;
       _.forEach(body, function(part){
         return _cost += bodyCost[part];
@@ -46,13 +54,13 @@
       if (!level) {
         level = 0;
       }
-      console.log('Attempt to create a ' + type(+' level ' + level + '. Body: ' + this.type[type].level[level] + '. Cost: ' + this.cost(this.type[type].level[level]) + '. Counter: ' + this.type[type].counter));
+      console.log('Attempt to create a ' + type + ' level ' + level + '. Body: ' + this.type[type].level[level] + '. Cost: ' + this.cost(this.type[type].level[level]) + '. Counter: ' + this.type[type].counter);
       spawn = core.spawns.getEnergyAbove(this.cost(this.type[type].level[level]))[0];
       if (spawn) {
         spawn.createCreep(this.type[type].level[level], type + '_' + this.type[type].counter, {
           role: type
         });
-        return ++this.type[type].counter;
+        return this.type[type].counter += 1;
       }
     },
     autoSpawn: function(){
@@ -64,14 +72,13 @@
 
 },{"../spawns/spawns":8}],3:[function(require,module,exports){
 (function(){
-  var core;
+  var core, main;
   core = require('./core/core');
-  module.exports.loop = function(){
-    var i$, ref$, len$, name, creep, results$ = [];
-    console.log('test');
+  main = function(){
+    var counter, name, creep, results$ = [];
     core.creeps.autoSpawn();
-    for (i$ = 0, len$ = (ref$ = Game.creeps).length; i$ < len$; ++i$) {
-      name = ref$[i$];
+    counter = 0;
+    for (name in Game.creeps) {
       creep = Game.creeps[name];
       switch (creep.memory.role) {
       case 'harvester':
@@ -86,6 +93,7 @@
     }
     return results$;
   };
+  main();
 }).call(this);
 
 },{"./core/core":1}],4:[function(require,module,exports){
@@ -150,14 +158,14 @@
 (function(){
   var roles;
   roles = {
-    builder: require('./builder/roleBuilder'),
-    harvester: require('./harvester/roleHarvester'),
-    upgrader: require('./upgrader/roleUpgrader')
+    builder: require('./builder/builder'),
+    harvester: require('./harvester/harvester'),
+    upgrader: require('./upgrader/upgrader')
   };
   module.exports = roles;
 }).call(this);
 
-},{"./builder/roleBuilder":4,"./harvester/roleHarvester":5,"./upgrader/roleUpgrader":7}],7:[function(require,module,exports){
+},{"./builder/builder":4,"./harvester/harvester":5,"./upgrader/upgrader":7}],7:[function(require,module,exports){
 (function(){
   var roleUpgrader;
   roleUpgrader = {
@@ -192,7 +200,7 @@
   };
   spawns = {
     getAll: function(_filter){
-      return core.structures.getAll(STRUCTURE_SPAWN);
+      return core.structures.getAll([STRUCTURE_SPAWN]);
     },
     getEnergyless: function(){
       var spawns, filteredSpawns;
