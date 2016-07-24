@@ -19,8 +19,12 @@ gulp.task('ls', function() {
 });
 
 gulp.task('browserify', ['ls'], function () {
-  browserify(paths.buildEntry)
-    .bundle()
+  var bundler = browserify(paths.buildEntry)
+  bundler.transform({
+    global: true
+  }, 'uglifyify')
+
+  bundler.bundle()
     .pipe(source(entryName))
     .pipe(gulp.dest(paths.dest));
 });
