@@ -1,0 +1,31 @@
+{
+  "name": "tutorial-5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romainbellande/screepBase.git"
+  },
+  "author": "Romain Bellande",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romainbellande/screepBase/issues"
+  },
+  "homepage": "https://github.com/romainbellande/screepBase#readme",
+  "devDependencies": {
+    "browserify": "^13.0.1",
+    "gulp": "^3.9.1",
+    "gulp-livescript": "^3.0.1",
+    "gulp-watch": "^4.3.8",
+    "livescript": "^1.5.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "prelude-ls": "^1.1.2"
+  }
+}
